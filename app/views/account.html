@@ -1,0 +1,34 @@
+<tabset>
+  <tab ng-repeat="tab in tabs" heading="{{tab}}" ng-click="switchTabs(tab)">
+  </tab>
+</tabset>
+
+<div ng-show="isTabMyBooksTab">
+  <h1>My Textbooks For Sale</h1>
+  <button type="button" ng-click="openModal()">Add New Textbook</button>
+
+  <br>
+  <br>
+  Search: <input ng-model="query">
+  <br>
+  <br>
+
+  <accordion>
+    <accordion-group ng-repeat="textbook in textbookManager | filter:query">
+      <accordion-heading>
+        {{textbook.name}} <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': status.open, 'glyphicon-chevron-right': !status.open}"></i>
+      </accordion-heading>
+      ISBN: {{textbook.isbn}}
+      <br>
+      Course: {{textbook.course}}
+      <br>
+      Condition: {{textbook.condition}}
+    </accordion-group>
+  </accordion>
+
+
+</div>
+
+<div ng-hide="isTabMyBooksTab">
+  Watching
+</div>

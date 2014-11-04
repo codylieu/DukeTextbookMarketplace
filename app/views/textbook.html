@@ -1,0 +1,31 @@
+<h1>All Textbooks</h1>
+
+<button type="button" ng-click="addTextbook()" ng-disabled="isAddTextbookButtonDisabled()">Add Textbook</button>
+<br>
+<br>
+Search: <input ng-model="query">
+<br>
+<br>
+Textbook Name: <input ng-model="textbookName">
+<br>
+Textbook ISBN: <input ng-model="textbookISBN">
+<br>
+Textbook Course: <input ng-model="textbookCourse">
+<br>
+Textbook Condition:
+<select ng-model="textbookCondition">
+  <option ng-repeat="condition in textbookConditions">{{condition}}</option>
+</select>
+
+<accordion>
+  <accordion-group ng-repeat="textbook in textbookManager | filter:query">
+    <accordion-heading>
+      {{textbook.name}} <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': status.open, 'glyphicon-chevron-right': !status.open}"></i>
+    </accordion-heading>
+    ISBN: {{textbook.isbn}}
+    <br>
+    Course: {{textbook.course}}
+    <br>
+    Condition: {{textbook.condition}}
+  </accordion-group>
+</accordion>
