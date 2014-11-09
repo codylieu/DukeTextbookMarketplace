@@ -9,54 +9,107 @@
  */
 angular.module('dukeTextbookMarketplaceApp')
   .controller('AccountCtrl', function ($scope, $modal, $log, $location) {
-    $scope.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
+
+    $scope.tabs = [
+      {
+        name: 'My Books',
+        active: true
+      },
+      {
+        name: 'Watching',
+        active: false
+      },
+      {
+        name: 'Contact Info',
+        active: false
+      }
     ];
 
-    $scope.tabs = ["My books", "Watching"];
-    $scope.activeTab = "My books";
-
-    $scope.isTabMyBooksTab = true;
-
-    $scope.textbooks = {};
+    $scope.contact = {
+      name: 'Cody Lieu',
+      phoneNumber: '7573950657',
+      emailAddress: 'cody.a.lieu@gmail.com'
+    };
 
     $scope.switchTabs = function (tab) {
-      $scope.isTabMyBooksTab = (tab == 'My books');
-      $scope.activeTab = tab;
+      _.each($scope.tabs, function(elem) {
+        elem.active = (tab == elem.name);
+      });
     }
-
-    $scope.textbookName = '';
-    $scope.textbookISBN = '';
-    $scope.textbookCourse = '';
-    $scope.textbookCondition = 'Poor';
-    $scope.textbookConditions = ['Poor', 'Good', 'Like New'];
 
     $scope.textbookManager = [
       {
-        name: 'Textbook 1',
-        isbn: '1',
-        course: 'Econ 101',
+        name: 'Introduction to Algorithms',
+        isbn: '9780262033848',
+        course: 'Compsci 330',
         condition: 'Good'
       },
       {
-        name: 'Textbook 2',
-        isbn: '2',
-        course: 'Math 212',
+        name: 'Linear Algebra: A Geometric Approach',
+        isbn: '9781429215213',
+        course: 'Math 221',
         condition: 'Excellent'
       }
     ];
 
-    $scope.openModal = function () {
+    $scope.addNewTextbook = function () {
       var modalInstance = $modal.open({
-        templateUrl: 'views/modal.html',
-        controller: 'ModalInstanceCtrl',
+        templateUrl: 'views/addTextbookModal.html',
+        controller: 'AddTextbookModalInstanceCtrl',
         resolve: {items: function () {}}
       });
 
       modalInstance.result.then(function (selectedItem) {
         $scope.addTextbook(selectedItem);
+      });
+    }
+
+    $scope.deleteTextbook = function (textbook) {
+      var modalInstance = $modal.open({
+        templateUrl: 'views/deleteTextbookModal.html',
+        controller: 'DeleteTextbookModalInstanceCtrl',
+        resolve: {
+          book: function () {
+            return textbook;
+        }}
+      });
+
+      modalInstance.result.then(function (selectedItem) {
+        if(selectedItem) {
+          $scope.textbookManager = _.without($scope.textbookManager, textbook);
+        }
+      });
+    }
+
+    $scope.editTextbookListing = function (textbook) {
+      var modalInstance = $modal.open({
+        templateUrl: 'views/editTextbookListingModal.html',
+        controller: 'EditTextbookListingModalInstanceCtrl',
+        resolve: {
+          book: function () {
+            return textbook;
+          }
+        }
+      });
+
+      modalInstance.result.then(function (selectedItem) {
+        $scope.textbookManager[_.indexOf($scope.textbookManager, textbook)] = selectedItem;
+      });
+    }
+
+    $scope.editContactInfo = function () {
+      var modalInstance = $modal.open({
+        templateUrl: 'views/editContactInfoModal.html',
+        controller: 'EditContactInfoModalInstanceCtrl',
+        resolve: {
+          contactInfo: function () {
+            return $scope.contact;
+          }
+        }
+      });
+
+      modalInstance.result.then(function (selectedItem) {
+        $scope.contact = selectedItem;
       });
     }
 
@@ -73,7 +126,7 @@ angular.module('dukeTextbookMarketplaceApp')
       return $scope.textbookName == '' || $scope.textbookISBN == '' || $scope.textbookCourse == ''
     }
 
-    $scope.goToFindBooks = function() {
+    $scope.goToFindBooks = function () {
       $location.path('textbook');
     }
   });

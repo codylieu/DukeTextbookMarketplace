@@ -8,13 +8,8 @@
  * Controller of the dukeTextbookMarketplaceApp
  */
 angular.module('dukeTextbookMarketplaceApp')
-  .controller('ModalInstanceCtrl', function ($scope, $modalInstance, items) {
-    $scope.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
-
+  .controller('AddTextbookModalInstanceCtrl', function ($scope, $modalInstance, items) {
+    
     $scope.textbookConditions = ['Poor', 'Good', 'Like New'];
 
     $scope.textbookDetails = {
@@ -27,10 +22,6 @@ angular.module('dukeTextbookMarketplaceApp')
     $scope.addTextbook = function () {
       $modalInstance.close($scope.textbookDetails);
     };
-
-    $scope.deleteTextbook = function () {
-      
-    }
 
     $scope.isAddTextbookButtonDisabled = function () {
       return $scope.textbookDetails.name == '' ||

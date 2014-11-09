@@ -1,0 +1,14 @@
+<h1>Add new textbook</h1>
+<p>Textbook Name: <input ng-model="textbookDetails.name"></p>
+
+<p>Textbook ISBN: <input ng-model="textbookDetails.isbn"></p>
+<p>Textbook Course: <input ng-model="textbookDetails.course"></p>
+
+Textbook Condition:
+<select ng-model="textbookDetails.condition">
+  <option ng-repeat="condition in textbookConditions">{{condition}}</option>
+</select>
+<br>
+<br>
+<button class="btn btn-success" ng-click="addTextbook()" ng-disabled="isAddTextbookButtonDisabled()">Add Textbook</button>
+<button class="btn btn-warning" ng-click="cancel()">Cancel</button>

@@ -1,0 +1,15 @@
+<h1>{{textbook.name}}</h1>
+
+<br>
+ISBN: <input ng-model="textbook.isbn">
+<br>
+Course: <input ng-model="textbook.course">
+<br>
+Condition:
+<select ng-model="textbook.condition">
+  <option ng-repeat="condition in textbookConditions">{{condition}}</option>
+</select>
+<br>
+<br>
+<button class="btn btn-success" ng-click="updateTextbook()" ng-disabled="isUpdateTextbookButtonDisabled()">Update</button>
+<button class="btn btn-warning" ng-click="cancel()">Cancel</button>

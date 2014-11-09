@@ -1,23 +1,10 @@
 <button class="btn btn-primary" ng-click="goToAccount()">Go to Account</button>
 
 <h1>All Textbooks</h1>
-
-<button type="button" ng-click="addTextbook()" ng-disabled="isAddTextbookButtonDisabled()">Add Textbook</button>
-<br>
 <br>
 Search: <input ng-model="query">
 <br>
 <br>
-Textbook Name: <input ng-model="textbookName">
-<br>
-Textbook ISBN: <input ng-model="textbookISBN">
-<br>
-Textbook Course: <input ng-model="textbookCourse">
-<br>
-Textbook Condition:
-<select ng-model="textbookCondition">
-  <option ng-repeat="condition in textbookConditions">{{condition}}</option>
-</select>
 
 <accordion>
   <accordion-group ng-repeat="textbook in textbookManager | filter:query">
