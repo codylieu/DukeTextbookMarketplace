@@ -48,19 +48,27 @@ angular.module('dukeTextbookMarketplaceApp')
         name: 'Linear Algebra: A Geometric Approach',
         isbn: '9781429215213',
         course: 'Math 221',
-        condition: 'Excellent'
+        condition: 'Like New'
       }
     ];
 
-    $scope.addNewTextbook = function () {
+    $scope.textbookWatchingManager = [
+      {
+        name: 'Genki I: An Integrated Course in Elementary Japanese',
+        isbn: '9784789014403',
+        course: 'Jpn 101',
+        condition: 'Poor'
+      }
+    ];
+
+    $scope.addTextbook = function () {
       var modalInstance = $modal.open({
         templateUrl: 'views/addTextbookModal.html',
-        controller: 'AddTextbookModalInstanceCtrl',
-        resolve: {items: function () {}}
+        controller: 'AddTextbookModalInstanceCtrl'
       });
 
       modalInstance.result.then(function (selectedItem) {
-        $scope.addTextbook(selectedItem);
+        $scope.textbookManager.push(selectedItem);
       });
     }
 
@@ -97,6 +105,10 @@ angular.module('dukeTextbookMarketplaceApp')
       });
     }
 
+    $scope.unwatchTextbook = function (textbook) {
+      $scope.textbookWatchingManager = _.without($scope.textbookWatchingManager, textbook);
+    }
+
     $scope.editContactInfo = function () {
       var modalInstance = $modal.open({
         templateUrl: 'views/editContactInfoModal.html',
@@ -110,15 +122,6 @@ angular.module('dukeTextbookMarketplaceApp')
 
       modalInstance.result.then(function (selectedItem) {
         $scope.contact = selectedItem;
-      });
-    }
-
-    $scope.addTextbook = function (textbookDetails) {
-      $scope.textbookManager.push({
-        name: textbookDetails.name,
-        isbn: textbookDetails.isbn,
-        course: textbookDetails.course,
-        condition: textbookDetails.condition
       });
     }
 

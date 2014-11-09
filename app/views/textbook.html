@@ -1,16 +1,41 @@
-<button class="btn btn-primary" ng-click="goToAccount()">Go to Account</button>
+<button class="btn btn-warning" ng-click="goToAccount()">Go to Account</button>
 
 <h1>All Textbooks</h1>
+
+<h2>Departments:</h2>
+Search Departments: <input ng-model="queryDepartments">
 <br>
-Search: <input ng-model="query">
+<br>
+<tabset vertical="true" type="pills">
+  <tab heading="All" ng-click="switchDepartment('All')"></tab>
+  <tab ng-repeat="department in departments | filter:queryDepartments" heading="{{department}}" ng-click="switchDepartment(department)"></tab>
+</tabset>
+
+<h3>Courses:</h3>
+Search Courses: <input ng-model="queryCourses">
+<br>
+<br>
+<ul class="list-group">
+  <li class="list-group-item" ng-click="switchCourse('All')" ng-show="showAllCoursesElement()">All</li>
+  <li class="list-group-item" ng-repeat="course in displayedCourses | filter:queryCourses" ng-click="switchCourse(course)">{{course}}</li>
+</ul>
+<!-- <tabset vertical="true" type="pills">
+  <tab heading="All" ng-click="switchCourse('All')"></tab>
+  <tab ng-repeat="course in displayedCourses" heading="{{course}}" ng-click="switchCourse(course)"></tab>
+</tabset> -->
+
+<h4>Textbooks:</h4>
+Search Textbooks: <input ng-model="query">
 <br>
 <br>
 
 <accordion>
-  <accordion-group ng-repeat="textbook in textbookManager | filter:query">
+  <accordion-group ng-repeat="textbook in displayedTextbooks | filter:query">
     <accordion-heading>
       {{textbook.name}} <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': status.open, 'glyphicon-chevron-right': !status.open}"></i>
     </accordion-heading>
+    <button class="btn btn-success" ng-click="watchTextbook(textbook)">Watch</button>
+    <br>
     ISBN: {{textbook.isbn}}
     <br>
     Course: {{textbook.course}}

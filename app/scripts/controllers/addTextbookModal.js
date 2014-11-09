@@ -8,7 +8,7 @@
  * Controller of the dukeTextbookMarketplaceApp
  */
 angular.module('dukeTextbookMarketplaceApp')
-  .controller('AddTextbookModalInstanceCtrl', function ($scope, $modalInstance, items) {
+  .controller('AddTextbookModalInstanceCtrl', function ($scope, $modalInstance) {
     
     $scope.textbookConditions = ['Poor', 'Good', 'Like New'];
 
