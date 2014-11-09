@@ -1,7 +1,6 @@
-<button class="btn btn-warning" ng-click="goToFindBooks()">Find Books</button>
+<button class="btn btn-warning btn pull-right" ng-click="goToFindBooks()">Find Books</button>
 <br>
 <br>
-
 <tabset type="pills">
   <tab ng-repeat="tab in tabs" heading="{{tab.name}}" ng-click="switchTabs(tab.name)"></tab>
 </tabset>
@@ -11,8 +10,10 @@
   <button class="btn btn-success" type="button" ng-click="addTextbook()">Add Textbook</button>
   </h1>
   <br>
-  Search: <input ng-model="query">
-  <br>
+  <div class="input-group">
+    <span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span>
+    <input type="text" class="form-control" placeholder="Textbook" ng-model="query">
+  </div>
   <br>
 
   <accordion close-others="false">
@@ -33,7 +34,7 @@
 </div>
 
 <div ng-show="tabs[1].active">
-  <h1>Textbooks I'm Watching</h1>
+  <h1>Watching</h1>
   Search: <input ng-model="queryWatching">
     <br>
     <br>
