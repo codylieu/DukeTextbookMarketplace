@@ -8,7 +8,7 @@
  * Controller of the dukeTextbookMarketplaceApp
  */
 angular.module('dukeTextbookMarketplaceApp')
-  .controller('TextbookCtrl', function ($scope) {
+  .controller('TextbookCtrl', function ($scope, $location) {
 
     $scope.textbookName = '';
     $scope.textbookISBN = '';
@@ -45,5 +45,9 @@ angular.module('dukeTextbookMarketplaceApp')
 
     $scope.isAddTextbookButtonDisabled = function () {
       return $scope.textbookName == '' || $scope.textbookISBN == '' || $scope.textbookCourse == ''
+    }
+
+    $scope.goToAccount = function () {
+      $location.path('account');
     }
   })

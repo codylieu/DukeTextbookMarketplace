@@ -1,3 +1,7 @@
+<button class="btn btn-primary" ng-click="goToFindBooks()">Find Books</button>
+<br>
+<br>
+
 <tabset>
   <tab ng-repeat="tab in tabs" heading="{{tab}}" ng-click="switchTabs(tab)">
   </tab>
@@ -5,7 +9,7 @@
 
 <div ng-show="isTabMyBooksTab">
   <h1>My Textbooks For Sale</h1>
-  <button type="button" ng-click="openModal()">Add New Textbook</button>
+  <button class="btn btn-primary" type="button" ng-click="openModal()">Add New Textbook</button>
 
   <br>
   <br>

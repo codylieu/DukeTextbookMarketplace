@@ -1,12 +1,12 @@
 <br>
-Textbook Name: <input ng-model="textbookName">
+Textbook Name: <input ng-model="textbookDetails.name">
 <br>
-Textbook ISBN: <input ng-model="textbookISBN">
+Textbook ISBN: <input ng-model="textbookDetails.isbn">
 <br>
-Textbook Course: <input ng-model="textbookCourse">
+Textbook Course: <input ng-model="textbookDetails.course">
 <br>
 Textbook Condition:
-<select ng-model="textbookCondition">
+<select ng-model="textbookDetails.condition">
   <option ng-repeat="condition in textbookConditions">{{condition}}</option>
 </select>
 <br>

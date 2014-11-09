@@ -8,7 +8,7 @@
  * Controller of the dukeTextbookMarketplaceApp
  */
 angular.module('dukeTextbookMarketplaceApp')
-  .controller('AccountCtrl', function ($scope, $modal, $log) {
+  .controller('AccountCtrl', function ($scope, $modal, $log, $location) {
     $scope.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
@@ -48,38 +48,32 @@ angular.module('dukeTextbookMarketplaceApp')
       }
     ];
 
-    $scope.openModal = function (size) {
+    $scope.openModal = function () {
       var modalInstance = $modal.open({
         templateUrl: 'views/modal.html',
         controller: 'ModalInstanceCtrl',
-        size: size,
-        resolve: {
-          items: function () {
-            return $scope.items;
-          }
-        }
+        resolve: {items: function () {}}
       });
 
       modalInstance.result.then(function (selectedItem) {
-        $scope.selected = selectedItem;
-      }, function () {
-        $log.info('Modal dismissed at: ' + new Date());
+        $scope.addTextbook(selectedItem);
       });
     }
 
-    $scope.addTextbook = function () {
+    $scope.addTextbook = function (textbookDetails) {
       $scope.textbookManager.push({
-        name: $scope.textbookName,
-        isbn: $scope.textbookISBN,
-        course: $scope.textbookCourse,
-        condition: $scope.textbookCondition
+        name: textbookDetails.name,
+        isbn: textbookDetails.isbn,
+        course: textbookDetails.course,
+        condition: textbookDetails.condition
       });
-      $scope.textbookName = '';
-      $scope.textbookISBN = '';
-      $scope.textbookCourse = '';
     }
 
     $scope.isAddTextbookButtonDisabled = function () {
       return $scope.textbookName == '' || $scope.textbookISBN == '' || $scope.textbookCourse == ''
+    }
+
+    $scope.goToFindBooks = function() {
+      $location.path('textbook');
     }
   });

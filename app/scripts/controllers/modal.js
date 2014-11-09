@@ -15,23 +15,26 @@ angular.module('dukeTextbookMarketplaceApp')
       'Karma'
     ];
 
-    $scope.items = items;
-    $scope.textbookName = '';
-    $scope.textbookISBN = '';
-    $scope.textbookCourse = '';
-    $scope.textbookCondition = 'Poor';
     $scope.textbookConditions = ['Poor', 'Good', 'Like New'];
 
-    $scope.selected = {
-      // item: $scope.items[0]
+    $scope.textbookDetails = {
+      name: '',
+      isbn: '',
+      course: '',
+      condition: 'Poor'
     };
 
     $scope.addTextbook = function () {
-      $modalInstance.close($scope.selected.item);
+      $modalInstance.close($scope.textbookDetails);
     };
 
+    $scope.deleteTextbook = function () {
+      
+    }
+
     $scope.isAddTextbookButtonDisabled = function () {
-      return $scope.textbookName == '' || $scope.textbookISBN == '' || $scope.textbookCourse == ''
+      return $scope.textbookDetails.name == '' ||
+          $scope.textbookDetails.isbn == '' || $scope.textbookDetails.course == ''
     }
 
     $scope.cancel = function () {
