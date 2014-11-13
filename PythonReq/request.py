@@ -16,7 +16,6 @@ def getCatalogNum_courseID(listOfSubject):
     print catalogNum_courseIDList
     return catalogNum_courseIDList
         
-    
 def getClassSection(catalogNum_courseIDList):
     print "return a list of class section associated with each element in the list that is being past in"
     catalog_sec_dict = {}
@@ -38,4 +37,4 @@ def getTextBookInfo(listOfSubject,catalogNum_courseIDList,classSectionList):
 
 
 if __name__ == '__main__':
-    getClassSection(getCatalogNum_courseID(["ITALIAN"]))
+    getClassSection(getCatalogNum_courseID(["ECE"]))

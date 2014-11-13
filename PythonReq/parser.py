@@ -30,12 +30,13 @@ def parseClassSections(request):
         items = json.loads(items)
         
         if items["ssr_get_classes_resp"]["search_result"]["subjects"] is None: return result
-            
+        if isinstance( items["ssr_get_classes_resp"]["search_result"]["subjects"]["subject"], list) : return result
         for course in items["ssr_get_classes_resp"]["search_result"]["subjects"]["subject"]["classes_summary"]["class_summary"]:
 #             list = []
 #             print course["crse_id"]
-            print course
-            result.append(course["class_section"])
+            if isinstance(course, dict):
+#                 print type(course)
+                result.append(course["class_section"])
 #            
 #             result.append(list)
         print result 
