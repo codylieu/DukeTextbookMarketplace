@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost:3306
--- Generation Time: Nov 13, 2014 at 02:52 PM
+-- Generation Time: Nov 13, 2014 at 04:58 PM
 -- Server version: 5.5.38
 -- PHP Version: 5.4.31
 
@@ -19,6 +19,8 @@ SET time_zone = "+00:00";
 --
 -- Database: `duke_textbook_marketplace`
 --
+CREATE DATABASE IF NOT EXISTS `duke_textbook_marketplace` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+USE `duke_textbook_marketplace`;
 
 -- --------------------------------------------------------
 
