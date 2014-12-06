@@ -25,16 +25,17 @@ def insertToDepartment(dept_id, deptName):
     except URLError,e:
         print "Got error code: ", e
         
-def insertToListings(listing_id, netid, isbn, date, statusOfBook, conditionOfBook, price):
-    url = ""
+def insertToListings(listing_id, netid, isbn, statusOfBook, conditionOfBook, price):
+   url = "http://colab-sbx-211.oit.duke.edu/DukeTextbookMarketplace/PHPDatabaseCalls/listings/insert.php?listing_id='"+listing_id+"'&netid='"+netid+"'&isbn='"+isbn+"'&statusOfBook='"+statusOfBook+"'&conditionOfBook='"+conditionOfBook+"'&price='"+price+"'"
     req = Request(url)
     try:
         response = urlopen(req)
     except URLError,e:
         print "Got error code: ", e
 
-def insertToScore(tid, score):
-    url = ""
+def insertToScore(score):
+    url = "http://colab-sbx-211.oit.duke.edu/DukeTextbookMarketplace/PHPDatabaseCalls/score/insert.php?score='"+score+"'"
+    req = Request(url)
     req = Request(url)
     try:
         response = urlopen(req)
@@ -43,15 +44,15 @@ def insertToScore(tid, score):
         
     
 def insertToTextbooks(isbn, title, author, description, edition):
-    url = ""
+    url = "http://colab-sbx-211.oit.duke.edu/DukeTextbookMarketplace/PHPDatabaseCalls/textbooks/insert.php?isbn='"+isbn+"'&title='"+title+"'&author='"+author+"'&description='"+description+"'&edition='"+edition+"'"
     req = Request(url)
     try:
         response = urlopen(req)
     except URLError,e:
         print "Got error code: ", e
         
-def insertToTransactions(tid, netid, listing_id, type, status, date_posted, date_paid):
-    url = ""
+def insertToTransactions(netid, listing_id, type, status, date_paid):
+    url = "http://colab-sbx-211.oit.duke.edu/DukeTextbookMarketplace/PHPDatabaseCalls/transactions/insert.php?netid='"+netid+"'&listing_id='"+listing_id+"'&type='"+type+"'&status='"+status+"'&date_paid='"+date_paid+"'"
     req = Request(url)
     try:
         response = urlopen(req)
