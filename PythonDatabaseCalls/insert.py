@@ -2,7 +2,7 @@ import sys, re
 from urllib2 import Request, urlopen, URLError
 
 def insertToClassToBook(class_id , isbn):
-    url = ""
+    url = "http://colab-sbx-211.oit.duke.edu/DukeTextbookMarketplace/PHPDatabaseCalls/class_to_book/insert.php?class_id='"+class_id+"'&isbn='"+isbn+"'"
     req = Request(url)
     try:
         response = urlopen(req)
@@ -10,7 +10,7 @@ def insertToClassToBook(class_id , isbn):
         print "Got error code: ", e
         
 def insertToCourse(class_id, dept_id, course_num, course_name):
-    url = ""
+    url = "http://colab-sbx-211.oit.duke.edu/DukeTextbookMarketplace/PHPDatabaseCalls/course/insert.php?class_id='"+class_id+"'&dept_id='"+dept_id+"'&course_num='"+course_num+"'&course_name='"+course_name+"'"
     req = Request(url)
     try:
         response = urlopen(req)
@@ -18,7 +18,7 @@ def insertToCourse(class_id, dept_id, course_num, course_name):
         print "Got error code: ", e
         
 def insertToDepartment(dept_id, deptName):
-    url = ""
+    url = "http://colab-sbx-211.oit.duke.edu/DukeTextbookMarketplace/PHPDatabaseCalls/department/insert.php?dept_id='"+dept_id+"'&deptName='"+deptName+"'"
     req = Request(url)
     try:
         response = urlopen(req)
