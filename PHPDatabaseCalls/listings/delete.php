@@ -12,7 +12,7 @@ if (mysqli_connect_errno())
 $sql = "DELETE FROM listings WHERE listing_id= ".$_GET['listing_id']. " AND netid=".$_GET['netid']." AND isbn=".$_GET['isbn'];
 
 if ($con->query($sql) == TRUE) {
-    echo "New record created successfully";
+    echo "deleted record from listings successfully";
 } else {
     echo "Error: " . $sql . "<br>" . $con->error;
 }

@@ -12,7 +12,7 @@ if (mysqli_connect_errno())
 $sql = "DELETE FROM department WHERE dept_id= ".$_GET['dept_id'];
 
 if ($con->query($sql) == TRUE) {
-    echo "New record created successfully";
+    echo "deleted record from department successfully";
 } else {
     echo "Error: " . $sql . "<br>" . $con->error;
 }
