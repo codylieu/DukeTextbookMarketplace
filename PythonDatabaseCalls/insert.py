@@ -80,10 +80,10 @@ def fixURL(url):
     return url.replace (" ", "%20")
     
     
-if __name__ == '__main__':
+#if __name__ == '__main__':
 #     insertToUsers("user1", "jack", "fucker", "cs", "121142144214")
 #     insertToTransactions("user1", "12", "type?", "1", "999")
-    insertToTextbooks("isbn121312312", "dam book","dam aouther", "description", "edition")
+#    insertToTextbooks("isbn121312312", "dam book","dam aouther", "description", "edition")
 #     insertToListings("2", "user1", "isbn121312312", "0", "good", "$3.99")
 #     insertToDepartment("cs12", "compsci")
 #     insertToCourse("1", "cs12", "120", "fuck db")
