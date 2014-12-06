@@ -37,8 +37,8 @@ def updateListings(listing_id, netid, isbn, statusOfBook, conditionOfBook, price
     except URLError,e:
         print "Got error code: ", e
 
-def updateScore(score):
-    url = "http://colab-sbx-211.oit.duke.edu/DukeTextbookMarketplace/PHPDatabaseCalls/score/update.php?score='"+score+"'"
+def updateScore(tid, score):
+    url = "http://colab-sbx-211.oit.duke.edu/DukeTextbookMarketplace/PHPDatabaseCalls/score/update.php?tid='"+tid+"'&score='"+score+"'"
     url = fixURL(url)
     req = Request(url)
     try:
