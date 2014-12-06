@@ -33,6 +33,7 @@ def getClassSection(catalogNum_courseIDList):
 
 def getTextBookInfo(listOfSubject,catalogNum_courseIDList,classSectionList):
     print "make a request to get the json from bookstore website"
+    
 
 
 
