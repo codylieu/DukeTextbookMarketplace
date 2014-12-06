@@ -6,7 +6,7 @@ if(mysqli_connect_errno()){
   echo "Fail to connect to MySQL: ". mysqli_connect_errno();
 }
 
-$sql = "UPDATE cours
+$sql = "UPDATE course
     SET class_id = ".$_GET['class_id'].",
       course_num = ".$_GET['course_num'].",
       course_name = ".$_GET['course_name'].",
