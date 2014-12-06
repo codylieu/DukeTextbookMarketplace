@@ -9,9 +9,7 @@ if (mysqli_connect_errno())
   echo "Failed to connect to MySQL: " . mysqli_connect_error();
 }
 
-$sql = "INSERT INTO class_to_book(class_id, isbn)
-		VALUES (".$_GET['class_id'].", "
-			.$_GET['isbn'].")";
+$sql = "DELETE FROM course WHERE class_id= ".$_GET['class_id']." AND dept_id=".$_GET['dept_id'];
 
 if ($con->query($sql) == TRUE) {
     echo "New record created successfully";
