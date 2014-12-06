@@ -22,17 +22,37 @@ def getClassSection(catalogNum_courseIDList):
     term = '1500%20-%202014%20Fall%20Term'
     for dict in catalogNum_courseIDList:
         print dict["course_id"]
+        print dict["catalog_nbr"]
         reqURL = 'https://streamer.oit.duke.edu/curriculum/classes/strm/'+ term +'/crse_id/'+dict["course_id"]+'?access_token=' +KEY
         request = Request(reqURL)
         sections = parseClassSections(request)
         if len(sections) > 0:
-            catalog_sec_dict[dict["course_id"]] = sections
+            catalog_sec_dict[dict["catalog_nbr"]] = sections
+            print 'HEY'
+            print catalog_sec_dict
             
     print catalog_sec_dict
+
+
+    for key,value in catalog_sec_dict.items():
+        for section in value:
+            getTextBookInfo(key, section)
+
     return catalog_sec_dict
 
-def getTextBookInfo(listOfSubject,catalogNum_courseIDList,classSectionList):
-    print "make a request to get the json from bookstore website"
+def getTextBookInfo(course, sec):
+    TERM = 'FA14';
+    DEPT = 'ECE';
+
+    request = Request('http://dukebooks.collegestoreonline.com/ePOS?form=shared3/textbooks/json/json_books.html&term=' + TERM + '&dept='+ DEPT + '&crs=' + course + '&sec=' + sec +'&store=320&dti=YES&desc=&bSug=&cSug=&H=N')
+    try:
+       response = urlopen(request)
+       courses = response.read()
+       courses = json.loads(courses)    
+       for book in courses["course"]["books"]:
+           print "title: " + book["title"]
+           print "author: " + book["author"]
+           print "isbn: " + book["isbn"]
 
 
 
