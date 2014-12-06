@@ -67,5 +67,5 @@ def insertToUsers(netid, firstName, lastName, major, phoneNumber):
         print "Got error code: ", e
     
 if __name__ == '__main__':
-    insertToUsers("peter112", "peter", "lastName", "cs", "123123124")
+    insertToUsers("peter11200s", "peter", "lastName", "cs", "123123124")
     
