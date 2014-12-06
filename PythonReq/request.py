@@ -3,6 +3,7 @@ from parser import *
 import json
 
 KEY = '48a841041e19085bb7a6e9cc4638ec7f'
+DEPT_NAME = ["ECE"]
 
 def getCatalogNum_courseID(listOfSubject):
     print "return a list of tuples containing catalog number and course ID"
@@ -12,8 +13,8 @@ def getCatalogNum_courseID(listOfSubject):
         print reqURL
         request = Request(reqURL)
         catalogNum_courseIDList = parseCourse(request)
-    print " this is catalognum_courseIDlist :"
-    print catalogNum_courseIDList
+    #print " this is catalognum_courseIDlist :"
+    #print catalogNum_courseIDList
     return catalogNum_courseIDList
         
 def getClassSection(catalogNum_courseIDList):
@@ -21,17 +22,16 @@ def getClassSection(catalogNum_courseIDList):
     catalog_sec_dict = {}
     term = '1500%20-%202014%20Fall%20Term'
     for dict in catalogNum_courseIDList:
-        print dict["course_id"]
-        print dict["catalog_nbr"]
+        #print dict["course_id"]
+        #print dict["catalog_nbr"]
         reqURL = 'https://streamer.oit.duke.edu/curriculum/classes/strm/'+ term +'/crse_id/'+dict["course_id"]+'?access_token=' +KEY
         request = Request(reqURL)
         sections = parseClassSections(request)
         if len(sections) > 0:
             catalog_sec_dict[dict["catalog_nbr"]] = sections
-            print 'HEY'
-            print catalog_sec_dict
+            #print catalog_sec_dict
             
-    print catalog_sec_dict
+    #print catalog_sec_dict
 
 
     for key,value in catalog_sec_dict.items():
@@ -40,22 +40,37 @@ def getClassSection(catalogNum_courseIDList):
 
     return catalog_sec_dict
 
-
 def getTextBookInfo(course, sec):
     TERM = 'FA14';
-    DEPT = 'ECE';
+    DEPT = DEPT_NAME[0];
+
+    course = course.strip()
 
     request = Request('http://dukebooks.collegestoreonline.com/ePOS?form=shared3/textbooks/json/json_books.html&term=' + TERM + '&dept='+ DEPT + '&crs=' + course + '&sec=' + sec +'&store=320&dti=YES&desc=&bSug=&cSug=&H=N')
+
     try:
        response = urlopen(request)
        courses = response.read()
-       courses = json.loads(courses)    
+       courses = json.loads(courses)   
+       if courses["course"] is None: return 
+       if "books" not in courses["course"]: return 
        for book in courses["course"]["books"]:
-           print "title: " + book["title"]
-           print "author: " + book["author"]
-           print "isbn: " + book["isbn"]
+           if "title" in book:
+                print "title: " + book["title"]
+                title = book["title"]
+           if "author" in book:
+                print "author: " + book["author"]
+                author = book["author"]
+           if "isbn" in book:
+                print "isbn: " + book["isbn"]
+                isbn = book["isbn"]
+           if not "No Books Found" in title:
+               print "MAKE CALL"
+               # make PHP call
 
+    except URLError, e:
+        print 'Got an error code:', e
 
 
 if __name__ == '__main__':
-    getClassSection(getCatalogNum_courseID(["ECE"]))
+    getClassSection(getCatalogNum_courseID(DEPT_NAME))
