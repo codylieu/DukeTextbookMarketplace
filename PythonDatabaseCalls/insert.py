@@ -7,6 +7,7 @@ def insertToClassToBook(class_id , isbn):
     req = Request(url)
     try:
         response = urlopen(req)
+        print response.read()
     except URLError,e:
         print "Got error code: ", e
         
@@ -16,6 +17,7 @@ def insertToCourse(class_id, dept_id, course_num, course_name):
     req = Request(url)
     try:
         response = urlopen(req)
+        print response.read()
     except URLError,e:
         print "Got error code: ", e
         
@@ -25,6 +27,7 @@ def insertToDepartment(dept_id, deptName):
     req = Request(url)
     try:
         response = urlopen(req)
+        print response.read()
     except URLError,e:
         print "Got error code: ", e
         
@@ -34,6 +37,7 @@ def insertToListings(listing_id, netid, isbn, statusOfBook, conditionOfBook, pri
     req = Request(url)
     try:
         response = urlopen(req)
+        print response.read()
     except URLError,e:
         print "Got error code: ", e
 
@@ -43,6 +47,7 @@ def insertToScore(score):
     req = Request(url)
     try:
         response = urlopen(req)
+        print response.read()
     except URLError,e:
         print "Got error code: ", e
         
@@ -64,6 +69,7 @@ def insertToTransactions(netid, listing_id, type, status, date_paid):
     req = Request(url)
     try:
         response = urlopen(req)
+        print response.read()
     except URLError,e:
         print "Got error code: ", e
         
@@ -73,6 +79,7 @@ def insertToUsers(netid, firstName, lastName, major, phoneNumber):
     req = Request(url)
     try:
         response = urlopen(req)
+        print response.read()
     except URLError,e:
         print "Got error code: ", e
         
