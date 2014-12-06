@@ -1,6 +1,9 @@
 from urllib2 import Request, urlopen, URLError
 from parser import *
 import json
+import sys
+sys.path.insert(0, '/../PythonDatabaseCalls/')
+import insert.py
 
 KEY = '48a841041e19085bb7a6e9cc4638ec7f'
 DEPT_NAME = ["ECE"]
@@ -66,6 +69,8 @@ def getTextBookInfo(course, sec):
                 isbn = book["isbn"]
            if not "No Books Found" in title:
                print "MAKE CALL"
+               insertToTextbooks(isbn, title, author, '', '')
+               insertToClassToBook(course, isbn)
                # make PHP call
 
     except URLError, e:
