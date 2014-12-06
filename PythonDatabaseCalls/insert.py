@@ -26,7 +26,7 @@ def insertToDepartment(dept_id, deptName):
         print "Got error code: ", e
         
 def insertToListings(listing_id, netid, isbn, statusOfBook, conditionOfBook, price):
-   url = "http://colab-sbx-211.oit.duke.edu/DukeTextbookMarketplace/PHPDatabaseCalls/listings/insert.php?listing_id='"+listing_id+"'&netid='"+netid+"'&isbn='"+isbn+"'&statusOfBook='"+statusOfBook+"'&conditionOfBook='"+conditionOfBook+"'&price='"+price+"'"
+    url = "http://colab-sbx-211.oit.duke.edu/DukeTextbookMarketplace/PHPDatabaseCalls/listings/insert.php?listing_id='"+listing_id+"'&netid='"+netid+"'&isbn='"+isbn+"'&statusOfBook='"+statusOfBook+"'&conditionOfBook='"+conditionOfBook+"'&price='"+price+"'"
     req = Request(url)
     try:
         response = urlopen(req)
@@ -45,6 +45,7 @@ def insertToScore(score):
     
 def insertToTextbooks(isbn, title, author, description, edition):
     url = "http://colab-sbx-211.oit.duke.edu/DukeTextbookMarketplace/PHPDatabaseCalls/textbooks/insert.php?isbn='"+isbn+"'&title='"+title+"'&author='"+author+"'&description='"+description+"'&edition='"+edition+"'"
+    print url
     req = Request(url)
     try:
         response = urlopen(req)
@@ -68,5 +69,13 @@ def insertToUsers(netid, firstName, lastName, major, phoneNumber):
         print "Got error code: ", e
     
 if __name__ == '__main__':
-    insertToUsers("peter11200s", "peter", "lastName", "cs", "123123124")
+#     insertToUsers("user1", "jack", "fucker", "cs", "121142144214")
+#     insertToTransactions("user1", "12", "type?", "1", "999")
+    insertToTextbooks("isbn121312312", "dam book","dam aouther", "description", "edition")
+#     insertToListings("2", "user1", "isbn121312312", "0", "good", "$3.99")
+#     insertToDepartment("cs12", "compsci")
+#     insertToCourse("1", "cs12", "120", "fuck db")
+#     insertToClassToBook("1" , "isbn121312312")
+#     insertToScore(score) #gonna be a problem
+
     
