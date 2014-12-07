@@ -1,5 +1,6 @@
 <?php
- 
+header('Content-Type: application/javascript');
+
 // Create connection
 $con=mysqli_connect("localhost","root","bitnami","duke_textbook_marketplace");
 
