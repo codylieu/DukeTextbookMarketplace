@@ -1,49 +1,41 @@
-<h1>Find a Textbook <button class="btn btn-warning btn pull-right" ng-click="goToAccount()">Go to Account</button></h1>
-
-<h2>Departments:</h2>
 <div class="input-group">
   <span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span>
-  <input type="text" class="form-control" placeholder="Department" ng-model="queryDepartments">
+  <input type="text" class="form-control" placeholder="Search by Title or Course" ng-model="query">
 </div>
 <br>
-<tabset vertical="true" type="pills">
-  <tab heading="All" ng-click="switchDepartment('All')"></tab>
-  <tab ng-repeat="department in departments | filter:queryDepartments" heading="{{department}}" ng-click="switchDepartment(department)"></tab>
-</tabset>
 
-<h3>Courses:</h3>
-<div class="input-group">
-  <span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span>
-  <input type="text" class="form-control" placeholder="Course" ng-model="queryCourses">
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">Alphabet</h3>
+  </div>
+  <div class="panel-body">
+  <tabset type="pills">
+    <tab ng-repeat="letter in alphabet" heading="{{letter}}" ng-click="switchLetter(letter)"></tab>
+  </tabset>
+  </div>
 </div>
-<br>
-<ul class="list-group">
-  <li class="list-group-item" ng-click="switchCourse('All')" ng-show="showAllCoursesElement()">All</li>
-  <li class="list-group-item" ng-repeat="course in displayedCourses | filter:queryCourses" ng-click="switchCourse(course)">{{course}}</li>
-</ul>
-<!-- <tabset vertical="true" type="pills">
-  <tab heading="All" ng-click="switchCourse('All')"></tab>
-  <tab ng-repeat="course in displayedCourses" heading="{{course}}" ng-click="switchCourse(course)"></tab>
-</tabset> -->
 
-<h4>Textbooks:</h4>
-<div class="input-group">
-  <span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span>
-  <input type="text" class="form-control" placeholder="Textbook" ng-model="query">
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">Department</h3>
+  </div>
+  <div class="panel-body">
+  <tabset type="pills">
+    <tab ng-repeat="department in departments3" heading="{{department}}" ng-click="switchDepartment(department)" ng-show="showDepartment(department)"></tab>
+  </tabset>
+  </div>
 </div>
-<br>
 
 <accordion>
-  <accordion-group ng-repeat="textbook in displayedTextbooks | filter:query">
+  <accordion-group ng-repeat="textbook in allTextbooks | filter:query" ng-show="showTextbook(textbook)">
     <accordion-heading>
-      {{textbook.name}} <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': status.open, 'glyphicon-chevron-right': !status.open}"></i>
+      {{textbook.class_id}} <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': status.open, 'glyphicon-chevron-right': !status.open}"></i>
     </accordion-heading>
     <button class="btn btn-success" ng-click="watchTextbook(textbook)">Watch</button>
+    <button class="btn btn-danger" ng-click="viewSellers(textbook)">View Sellers</button>
+    <br>
+    Title: {{textbook.title}}
     <br>
     ISBN: {{textbook.isbn}}
-    <br>
-    Course: {{textbook.course}}
-    <br>
-    Condition: {{textbook.condition}}
   </accordion-group>
 </accordion>
