@@ -14,7 +14,7 @@ if (mysqli_connect_errno())
 $sql = "SELECT listings.price, listings.isbn, listings.conditionOfBook, textbooks.title, date 
         FROM listings 
         INNER JOIN textbooks ON listings.isbn = textbooks.isbn 
-        WHERE netid =". $_GET['net_id'];
+        WHERE netid ='". $_GET['netid'] ."'";
 
 // Check if there are results
 if ($result = mysqli_query($con, $sql))
