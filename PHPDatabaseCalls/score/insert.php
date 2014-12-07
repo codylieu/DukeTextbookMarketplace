@@ -1,5 +1,8 @@
 <?php
 
+header('Content-Type: application/javascript');
+header("access-control-allow-origin: *");
+
 // Create connection
 $con=mysqli_connect("localhost","root","bitnami","duke_textbook_marketplace");
 

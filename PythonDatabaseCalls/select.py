@@ -7,8 +7,9 @@ def selectListingInfo():
     req = Request(url)
     try:
         response = urlopen(req)
-        print reformatSelectListingInfo(response.read())
-#         return reformatSelectListingInfo(response.read())
+        reformatedJSON = reformatSelectListingInfo(response.read())
+        print reformatedJSON
+        return reformatedJSON
     except URLError,e:
         return e
 
@@ -18,6 +19,7 @@ def fixURL(url):
 def reformatSelectListingInfo(jsonResp):
 #     print eval(jsonResp)
     result = []
+    usedCourse = []
     resultDict = {}
 #     deptAlreadyInResultList =[]
     
@@ -25,26 +27,66 @@ def reformatSelectListingInfo(jsonResp):
         departmentDict = {}
         itemDict = ast.literal_eval(json.dumps(item, sort_keys=True,indent=4, separators=(',', ': ')))
         deptName = itemDict["deptName"]
-        if (deptName not in resultDict.keys()):
+        if (deptName not in resultDict.keys() and itemDict["class_id"] not in usedCourse):
             departmentDict["name"] = deptName
             departmentDict["courses"] = []
             coursedict = {}
             coursedict["name"] = itemDict["class_id"]
-            textbookdict = {}
-            textbookdict["name"] = itemDict['title']
-            textbookdict["isbn"] = itemDict['isbn']
-            textbookdict["course"] = itemDict['class_id']
-#             textbookdict["condition"]= itemDict['conditionOfBook']
-            textbookdict["department"] = itemDict['deptName']
-            coursedict["textbook"] = textbookdict
+            usedCourse.append(itemDict["class_id"])
+            coursedict["textbook"] = []
+            textbookList = getAllTextbook(eval(jsonResp),deptName,itemDict['class_id'])
+#             print textbookList
+            for textbook in textbookList:
+                textbookdict = {}
+                textbookdict["name"] = textbook['title']
+                textbookdict["isbn"] = textbook['isbn']
+                textbookdict["course"] = textbook['class_id']
+    #             textbookdict["condition"]= itemDict['conditionOfBook']
+                textbookdict["department"] = textbook['deptName']
+                coursedict["textbook"].append(textbookdict)
+                
             departmentDict["courses"].append(coursedict)
             resultDict[deptName] = departmentDict
         else:
-            departmentDict = resultDict[deptName]
+            if (itemDict["class_id"] not in usedCourse):
+                departmentDict = resultDict[deptName]
+                coursedict = {}
+                coursedict["name"] = itemDict["class_id"]
+                usedCourse.append(itemDict["class_id"])
+                coursedict["textbook"] = []
+                textbookList = getAllTextbook(eval(jsonResp),deptName,itemDict['class_id'])
+#             print textbookList
+                for textbook in textbookList:
+                    textbookdict = {}
+                    textbookdict["name"] = textbook['title']
+                    textbookdict["isbn"] = textbook['isbn']
+                    textbookdict["course"] = textbook['class_id']
+        #             textbookdict["condition"]= itemDict['conditionOfBook']
+                    textbookdict["department"] = textbook['deptName']
+                    coursedict["textbook"].append(textbookdict)
+                departmentDict["courses"].append(coursedict)
             
-    print itemDict
-    print resultDict
-#         print type(itemDict)
+            
+    for value in resultDict.values():
+        result.append(value)
+    
+    return result
+        
+    
+def getAllTextbook(jsonResp,deptName,courseID):
+    result = []
+    for item in jsonResp:
+        textbookInfo = {}
+        if(item['deptName'] == deptName and item['class_id'] == courseID):
+            textbookInfo["title"] = item['title']
+            textbookInfo["isbn"] = item['isbn']
+            textbookInfo["class_id"] = item['class_id']
+            textbookInfo["deptName"] = item['deptName']
+            result.append(textbookInfo)
+    
+    return result
+                
+
         
 if __name__ == '__main__':
     selectListingInfo()

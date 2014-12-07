@@ -1,5 +1,6 @@
 <?php
-
+header('Content-Type: application/javascript');
+header("access-control-allow-origin: *");
 $con = mysqli_connect("localhost", "root", "bitnami", "health_alertdb");
 
 if(mysqli_connect_errno()){
@@ -10,10 +11,10 @@ $sql = "UPDATE listings
     SET listing_id = ".$_GET['listing_id'].",
       date = ".$_GET['date'].",
       statusOfBook = ".$_GET['statusOfBook'].",
-      conditionOfBook = ".$_GET['conditionOfBook'],
-      price = ".$_GET['price']"
-    WHERE netid = ".$_GET['netid']
-    AND isbn = ".$_GET['isbn']";
+      conditionOfBook = ".$_GET['conditionOfBook'].",
+      price = ".$_GET['price']."
+    WHERE netid = ".$_GET['netid']."
+    AND isbn = ".$_GET['isbn'];
 
 if ($con->query($sql)){
   echo "Updated record succesfully\n";
