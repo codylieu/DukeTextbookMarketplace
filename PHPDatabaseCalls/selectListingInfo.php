@@ -1,15 +1,5 @@
 <?php
  
-App::before(function($request)
-{
-    if (Request::getMethod() == "OPTIONS") {
-        $headers = array(
-        'Access-Control-Allow-Methods'=> 'POST, GET, OPTIONS, PUT, DELETE',
-        'Access-Control-Allow-Headers'=> 'X-Requested-With, content-type, Authorization',);
-        return Response::make('', 200, $headers);
-    }
-});
- 
 // Create connection
 $con=mysqli_connect("localhost","root","bitnami","duke_textbook_marketplace");
 
