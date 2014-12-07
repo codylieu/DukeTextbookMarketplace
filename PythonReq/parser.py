@@ -2,6 +2,8 @@ from urllib2 import Request, urlopen, URLError
 import json
 import sys, re
 
+classNumber_to_classDescription = {}
+
 def parseBooks(request):
     print "parser for bookdata"
     result = []
@@ -60,7 +62,15 @@ def parseCourse(request):
             dict["course_id"] = course["crse_id"]
 #             print course["catalog_nbr"]
             dict["catalog_nbr"] = course ["catalog_nbr"]
+            global classNumber_to_classDescription
+            classNumber_to_classDescription[str(course["catalog_nbr"]).strip()] = str(course["course_title_long"])
+            print str(course["catalog_nbr"])
+            print str(course["course_title_long"])
             result.append(dict)
         return result
     except URLError, e:
         print 'Got an error code:', e
+
+def getClassNumberMap():
+    global classNumber_to_classDescription
+    return classNumber_to_classDescription
