@@ -12,7 +12,7 @@ if (mysqli_connect_errno())
 $sql = "DELETE FROM textbooks WHERE isbn = ".$_GET['isbn'];
 
 if ($con->query($sql) == TRUE) {
-    echo "New record created successfully";
+    echo "deleted record textbooks successfully";
 } else {
     echo "Error: " . $sql . "<br>" . $con->error;
 }

@@ -12,7 +12,7 @@ if (mysqli_connect_errno())
 $sql = "DELETE FROM users WHERE netid = ".$_GET['netid'];
 
 if ($con->query($sql) == TRUE) {
-    echo "New record created successfully";
+    echo "deleted record from users successfully";
 } else {
     echo "Error: " . $sql . "<br>" . $con->error;
 }

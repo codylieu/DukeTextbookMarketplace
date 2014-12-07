@@ -2,11 +2,12 @@ from urllib2 import Request, urlopen, URLError
 from parser import *
 import json
 import sys
-sys.path.insert(0, '/../PythonDatabaseCalls/')
-import insert.py
+sys.path.insert(0, '../PythonDatabaseCalls/')
+import insert
 
 KEY = '48a841041e19085bb7a6e9cc4638ec7f'
-DEPT_NAME = ["ECE"]
+DEPT_NAME = ["ARTSVIS"]
+FULL_NAME = 'Visual Arts'
 
 def getCatalogNum_courseID(listOfSubject):
     print "return a list of tuples containing catalog number and course ID"
@@ -46,6 +47,7 @@ def getClassSection(catalogNum_courseIDList):
 def getTextBookInfo(course, sec):
     TERM = 'FA14';
     DEPT = DEPT_NAME[0];
+    insert.insertToDepartment(DEPT, FULL_NAME)
 
     course = course.strip()
 
@@ -69,8 +71,11 @@ def getTextBookInfo(course, sec):
                 isbn = book["isbn"]
            if not "No Books Found" in title:
                print "MAKE CALL"
-               insertToTextbooks(isbn, title, author, '', '')
-               insertToClassToBook(course, isbn)
+
+               insert.insertToCourse(DEPT + course, DEPT, course, getClassNumberMap()[str(course).strip()])
+
+               insert.insertToTextbooks(isbn, title, author, '', '')
+               insert.insertToClassToBook(DEPT + course, isbn)
                # make PHP call
 
     except URLError, e:
