@@ -20,7 +20,7 @@ if (mysqli_connect_errno())
 $sql = "SELECT textbooks.isbn, textbooks.title, course.class_id, course.dept_id, course_name, department.deptName 
         FROM textbooks INNER JOIN class_to_book ON textbooks.isbn = class_to_book.isbn 
                        INNER JOIN course ON course.class_id = class_to_book.class_id 
-                       INNER JOIN department ON department.dept_id = course.dept_id"
+                       INNER JOIN department ON department.dept_id = course.dept_id";
 
 // Check if there are results
 if ($result = mysqli_query($con, $sql))

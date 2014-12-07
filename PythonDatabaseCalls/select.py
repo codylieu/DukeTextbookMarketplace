@@ -34,7 +34,7 @@ def reformatSelectListingInfo(jsonResp):
             textbookdict["name"] = itemDict['title']
             textbookdict["isbn"] = itemDict['isbn']
             textbookdict["course"] = itemDict['class_id']
-            textbookdict["condition"]= itemDict['conditionOfBook']
+#             textbookdict["condition"]= itemDict['conditionOfBook']
             textbookdict["department"] = itemDict['deptName']
             coursedict["textbook"] = textbookdict
             departmentDict["courses"].append(coursedict)
@@ -42,7 +42,7 @@ def reformatSelectListingInfo(jsonResp):
         else:
             departmentDict = resultDict[deptName]
             
-#     print itemDict
+    print itemDict
     print resultDict
 #         print type(itemDict)
         
