@@ -11,10 +11,11 @@ if (mysqli_connect_errno())
   echo "Failed to connect to MySQL: " . mysqli_connect_error();
 }
 
-$sql = "SELECT listings.price, listings.isbn, listings.conditionOfBook, textbooks.title, date 
-        FROM listings 
-        INNER JOIN textbooks ON listings.isbn = textbooks.isbn 
-        WHERE netid ='". $_GET['netid'] ."'";
+
+
+$sql = "SELECT watching.isbn, title, author 
+        FROM watching 
+        INNER JOIN textbooks ON watching.isbn = textbooks.isbn WHERE netid = '".$_GET['netid']."'";
 
 // Check if there are results
 if ($result = mysqli_query($con, $sql))
