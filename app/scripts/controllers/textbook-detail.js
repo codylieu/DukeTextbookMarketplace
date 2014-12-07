@@ -8,7 +8,9 @@
  * Controller of the dukeTextbookMarketplaceApp
  */
 angular.module('dukeTextbookMarketplaceApp')
-  .controller('TextbookDetailCtrl', function ($scope) {
+  .controller('TextbookDetailCtrl', function ($scope, currentUser) {
+
+    $scope.currentUser = currentUser;
     
     $scope.textbook = {
       name: 'Introduction to Algorithms',

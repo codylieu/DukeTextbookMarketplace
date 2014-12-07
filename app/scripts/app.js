@@ -40,7 +40,14 @@ angular
         templateUrl: 'views/textbook-detail.html',
         controller: 'TextbookDetailCtrl'
       })
+      .when('/login', {
+        templateUrl: 'views/login.html',
+        controller: 'LoginCtrl'
+      })
       .otherwise({
         redirectTo: '/'
       });
+  })
+  .factory('currentUser', function () {
+    return {netid: ''};
   });

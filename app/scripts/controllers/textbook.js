@@ -8,7 +8,9 @@
  * Controller of the dukeTextbookMarketplaceApp
  */
 angular.module('dukeTextbookMarketplaceApp')
-  .controller('TextbookCtrl', function ($scope, $location, $http) {
+  .controller('TextbookCtrl', function ($scope, $location, $http, currentUser) {
+
+    $scope.currentUser = currentUser;
 
     $scope.allTextbooks = [];
     $scope.departments3 = [];

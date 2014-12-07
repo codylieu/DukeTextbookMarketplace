@@ -26,7 +26,7 @@
   </div>
 </div>
 
-<accordion>
+<accordion close-others="false">
   <accordion-group ng-repeat="textbook in allTextbooks | filter:query" ng-show="showTextbook(textbook)">
     <accordion-heading>
       {{textbook.class_id}} <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': status.open, 'glyphicon-chevron-right': !status.open}"></i>

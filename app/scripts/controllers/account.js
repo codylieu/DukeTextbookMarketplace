@@ -8,8 +8,14 @@
  * Controller of the dukeTextbookMarketplaceApp
  */
 angular.module('dukeTextbookMarketplaceApp')
-  .controller('AccountCtrl', function ($scope, $modal, $log, $location) {
+  .controller('AccountCtrl', function ($scope, $modal, $log, $location, currentUser, $http) {
 
+    $scope.currentUser = currentUser;
+    $scope.books = [];
+    $http.get('http://colab-sbx-211.oit.duke.edu/DukeTextbookMarketplace/PHPDatabaseCalls/selectUserTextbooks.php?netid=' + $scope.currentUser.netid).
+      success(function(data, status, headers, config) {
+        $scope.books = data;
+      });
     $scope.tabs = [
       {
         name: 'My Books',
