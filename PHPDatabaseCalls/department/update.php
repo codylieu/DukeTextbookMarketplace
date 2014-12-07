@@ -1,4 +1,6 @@
 <?php
+header('Content-Type: application/javascript');
+header("access-control-allow-origin: *");
 
 $con = mysqli_connect("localhost", "root", "bitnami", "health_alertdb");
 
