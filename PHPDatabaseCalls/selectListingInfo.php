@@ -9,13 +9,18 @@ if (mysqli_connect_errno())
   echo "Failed to connect to MySQL: " . mysqli_connect_error();
 }
 
-$sql = "SELECT textbooks.isbn, filterListings.price, filterListings.conditionOfBook, textbooks.title, course.class_id, course.dept_id, course_name, department.deptName 
-        FROM (SELECT isbn, price, conditionOfBook FROM listings WHERE statusOfBook = '1') as filterListings
-        INNER JOIN textbooks ON filterListings.isbn = textbooks.isbn 
-        INNER JOIN class_to_book ON textbooks.isbn = class_to_book.isbn 
-        INNER JOIN course ON course.class_id = class_to_book.class_id 
-        INNER JOIN department ON department.dept_id = course.dept_id 
-        ORDER BY dept_id";
+// $sql = "SELECT textbooks.isbn, filterListings.price, filterListings.conditionOfBook, textbooks.title, course.class_id, course.dept_id, course_name, department.deptName 
+//         FROM (SELECT isbn, price, conditionOfBook FROM listings WHERE statusOfBook = '1') as filterListings
+//         INNER JOIN textbooks ON filterListings.isbn = textbooks.isbn 
+//         INNER JOIN class_to_book ON textbooks.isbn = class_to_book.isbn 
+//         INNER JOIN course ON course.class_id = class_to_book.class_id 
+//         INNER JOIN department ON department.dept_id = course.dept_id 
+//         ORDER BY dept_id";
+
+$sql = "SELECT textbooks.isbn, textbooks.title, course.class_id, course.dept_id, course_name, department.deptName 
+        FROM textbooks INNER JOIN class_to_book ON textbooks.isbn = class_to_book.isbn 
+                       INNER JOIN course ON course.class_id = class_to_book.class_id 
+                       INNER JOIN department ON department.dept_id = course.dept_id"
 
 // Check if there are results
 if ($result = mysqli_query($con, $sql))
