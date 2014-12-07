@@ -15,6 +15,7 @@ angular.module('dukeTextbookMarketplaceApp')
     $http.get('http://colab-sbx-211.oit.duke.edu/DukeTextbookMarketplace/PHPDatabaseCalls/selectUserTextbooks.php?netid=' + $scope.currentUser.netid).
       success(function(data, status, headers, config) {
         $scope.books = data;
+        console.log($scope.books);
       });
     $scope.tabs = [
       {
