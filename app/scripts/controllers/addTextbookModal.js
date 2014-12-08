@@ -9,14 +9,11 @@
  */
 angular.module('dukeTextbookMarketplaceApp')
   .controller('AddTextbookModalInstanceCtrl', function ($scope, $modalInstance) {
-    
-    $scope.textbookConditions = ['Poor', 'Good', 'Like New'];
 
     $scope.textbookDetails = {
-      name: '',
       isbn: '',
-      course: '',
-      condition: 'Poor'
+      price: '',
+      condition: ''
     };
 
     $scope.addTextbook = function () {
@@ -24,8 +21,8 @@ angular.module('dukeTextbookMarketplaceApp')
     };
 
     $scope.isAddTextbookButtonDisabled = function () {
-      return $scope.textbookDetails.name == '' ||
-          $scope.textbookDetails.isbn == '' || $scope.textbookDetails.course == ''
+      return $scope.textbookDetails.isbn == ''||
+        $scope.textbookDetails.price == '' || $scope.textbookDetails.condition == '';
     }
 
     $scope.cancel = function () {

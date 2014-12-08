@@ -1,15 +1,7 @@
-<h1>{{textbook.name}}</h1>
-
-<br>
-ISBN: <input ng-model="textbook.isbn">
-<br>
-Course: <input ng-model="textbook.course">
-<br>
-Condition:
-<select ng-model="textbook.condition">
-  <option ng-repeat="condition in textbookConditions">{{condition}}</option>
-</select>
-<br>
-<br>
+<h1>Edit listing for: {{textbook.title}}</h1>
+<p>ISBN: <input ng-model="textbook.isbn"></p>
+<p>Condition: <input ng-model="textbook.conditionOfBook"></p>
+<p>Price: <input ng-model="textbook.price"></p>
+<br><br>
 <button class="btn btn-success" ng-click="updateTextbook()" ng-disabled="isUpdateTextbookButtonDisabled()">Update</button>
 <button class="btn btn-warning" ng-click="cancel()">Cancel</button>

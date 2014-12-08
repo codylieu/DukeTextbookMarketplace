@@ -47,6 +47,7 @@
         {{book.title}} <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': status.open, 'glyphicon-chevron-right': !status.open}"></i>
       </accordion-heading>
       <button class="btn btn-danger" ng-click="unwatchTextbook(book)">Unwatch</button>
+      <button class="btn btn-warning" ng-click="viewSellers(book)">View Sellers</button>
       <br>
       Author: {{book.author}}
       <br>
@@ -60,4 +61,5 @@
   <p>Name: {{user.firstName + ' ' + user.lastName}}</p>
   <p>Phone Number: {{user.phoneNumber}}</p>
   <p>Email Address: {{user.netid + '@duke.edu'}}</p>
+  <p>Major: {{user.major}}</p>
 </div>

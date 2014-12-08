@@ -10,8 +10,6 @@
 angular.module('dukeTextbookMarketplaceApp')
   .controller('EditTextbookListingModalInstanceCtrl', function ($scope, $modalInstance, book) {
 
-    $scope.textbookConditions = ['Poor', 'Good', 'Like New'];
-
     $scope.textbook = _.clone(book);
 
     $scope.updateTextbook = function () {

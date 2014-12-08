@@ -36,10 +36,6 @@ angular
         templateUrl: 'views/contact.html',
         controller: 'ContactCtrl'
       })
-      .when('/detail', {
-        templateUrl: 'views/textbook-detail.html',
-        controller: 'TextbookDetailCtrl'
-      })
       .when('/login', {
         templateUrl: 'views/login.html',
         controller: 'LoginCtrl'
