@@ -1,3 +1,7 @@
+<button class="btn btn-warning btn" ng-click="goToAccount()">Go to account</button>
+<button class="btn btn-danger btn pull-right" ng-click="logout()">Log out</button>
+<br><br>
+
 <div class="input-group">
   <span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span>
   <input type="text" class="form-control" placeholder="Search by Title or Course" ng-model="query">
@@ -26,7 +30,7 @@
   </div>
 </div>
 
-<accordion>
+<accordion close-others="false">
   <accordion-group ng-repeat="textbook in allTextbooks | filter:query" ng-show="showTextbook(textbook)">
     <accordion-heading>
       {{textbook.class_id}} <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': status.open, 'glyphicon-chevron-right': !status.open}"></i>

@@ -21,8 +21,8 @@ angular
   .config(function ($routeProvider) {
     $routeProvider
       .when('/', {
-        templateUrl: 'views/main.html',
-        controller: 'MainCtrl'
+        templateUrl: 'views/textbook.html',
+        controller: 'TextbookCtrl'
       })
       .when('/textbook', {
         templateUrl: 'views/textbook.html',
@@ -40,7 +40,14 @@ angular
         templateUrl: 'views/textbook-detail.html',
         controller: 'TextbookDetailCtrl'
       })
+      .when('/login', {
+        templateUrl: 'views/login.html',
+        controller: 'LoginCtrl'
+      })
       .otherwise({
         redirectTo: '/'
       });
+  })
+  .factory('currentUser', function () {
+    return {netid: ''};
   });

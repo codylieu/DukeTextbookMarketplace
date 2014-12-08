@@ -24,20 +24,18 @@
     <div class="container">
       <div class="header">
         <ul class="nav nav-pills pull-right">
-          <li><a ng-href="#">Home</a></li>
-          <li><a href="#/account">Account</a></li>
           <li><a ng-href="#/textbook">Textbook</a></li>
+          <li><a href="#/account">Account</a></li>
           <li><a ng-href="#/contact">Contact</a></li>
           <li><a ng-href="#/detail">Detail</a></li>
+          <li><a ng-href="#/login">Login</a></li>
         </ul>
         <h3 class="text-muted">Duke Textbook Marketplace</h3>
       </div>
 
       <div ng-view=""></div>
 
-      <div class="footer">
-        <p><span class="glyphicon glyphicon-heart"></span> from the Yeoman team</p>
-      </div>
+      <div class="footer"></div>
     </div>
 
 
@@ -77,7 +75,6 @@
 
         <!-- build:js({.tmp,app}) scripts/scripts.js -->
         <script src="scripts/app.js"></script>
-        <script src="scripts/controllers/main.js"></script>
         <script src="scripts/controllers/textbook.js"></script>
         <script src="scripts/controllers/account.js"></script>
         <script src="scripts/controllers/addTextbookModal.js"></script>
@@ -86,6 +83,8 @@
         <script src="scripts/controllers/editContactInfoModal.js"></script>
         <script src="scripts/controllers/contact.js"></script>
         <script src="scripts/controllers/textbook-detail.js"></script>
+        <script src="scripts/controllers/login.js"></script>
+        <script src="scripts/controllers/viewSellersModal.js"></script>
         <!-- endbuild -->
 </body>
 </html>

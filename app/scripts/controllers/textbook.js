@@ -8,7 +8,9 @@
  * Controller of the dukeTextbookMarketplaceApp
  */
 angular.module('dukeTextbookMarketplaceApp')
-  .controller('TextbookCtrl', function ($scope, $location, $http) {
+  .controller('TextbookCtrl', function ($scope, $location, $http, currentUser, $modal) {
+
+    $scope.currentUser = currentUser;
 
     $scope.allTextbooks = [];
     $scope.departments3 = [];
@@ -20,9 +22,8 @@ angular.module('dukeTextbookMarketplaceApp')
       });
 
     $scope.selectedDepartment = 'African and African American Studies';
-    $scope.switchDepartment = function (letter) {
-      console.log('Letter is: ' + letter)
-      $scope.selectedDepartment = letter;
+    $scope.switchDepartment = function (department) {
+      $scope.selectedDepartment = department;
     };
 
     $scope.showDepartment = function (department) {
@@ -39,11 +40,27 @@ angular.module('dukeTextbookMarketplaceApp')
               textbook.deptName.substring(0, 1) == $scope.selectedLetter;
     };
 
-    $scope.watchTextbook = function (textbook) {
+    $scope.viewSellers = function (textbook) {
+      var modalInstance = $modal.open({
+        templateUrl: 'views/viewSellersModal.html',
+        controller: 'ViewSellersModalInstanceCtrl',
+        resolve: {
+          book: function () {
+            return textbook;
+          }
+        }
+      });
+    };
 
+    $scope.watchTextbook = function (textbook) {
+      $http.get("http://colab-sbx-211.oit.duke.edu/DukeTextbookMarketplace/PHPDatabaseCalls/watching/insert.php?netid='" + $scope.currentUser.netid + "'&isbn='" + textbook.isbn + "'");
     };
 
     $scope.goToAccount = function () {
       $location.path('account');
-    }
+    };
+
+    $scope.logout = function () {
+      $location.path('login');
+    };
   })
