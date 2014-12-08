@@ -98,6 +98,7 @@ angular.module('dukeTextbookMarketplaceApp')
 
     $scope.unwatchTextbook = function (textbook) {
       $scope.watching = _.without($scope.watching, textbook);
+      $http.get("http://colab-sbx-211.oit.duke.edu/DukeTextbookMarketplace/PHPDatabaseCalls/watching/delete.php?netid='" + $scope.currentUser.netid + "'&isbn='" + textbook.isbn + "'");
     }
 
     $scope.editContactInfo = function () {

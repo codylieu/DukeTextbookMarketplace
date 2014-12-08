@@ -53,13 +53,7 @@ angular.module('dukeTextbookMarketplaceApp')
     };
 
     $scope.watchTextbook = function (textbook) {
-      $http.get("http://colab-sbx-211.oit.duke.edu/DukeTextbookMarketplace/PHPDatabaseCalls/watching/insert.php?netid='" + $scope.currentUser + "'&isbn='" + textbook.isbn + "'").
-        success(function(data, status, headers, config) {
-          console.log('success');
-        }).
-        error(function(data, status, headers, config) {
-          console.log('error');
-        });
+      $http.get("http://colab-sbx-211.oit.duke.edu/DukeTextbookMarketplace/PHPDatabaseCalls/watching/insert.php?netid='" + $scope.currentUser.netid + "'&isbn='" + textbook.isbn + "'");
     };
 
     $scope.goToAccount = function () {
