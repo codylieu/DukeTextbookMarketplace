@@ -15,7 +15,7 @@ angular.module('dukeTextbookMarketplaceApp')
     $scope.allTextbooks = [];
     $scope.departments = [];
     $scope.alphabet = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
-    $http.get('http://colab-sbx-211.oit.duke.edu/DukeTextbookMarketplace/PHPDatabaseCalls/selectListingInfo.php?callback=json_callback').
+    $http.get('//colab-sbx-211.oit.duke.edu/DukeTextbookMarketplace/PHPDatabaseCalls/selectListingInfo.php?callback=json_callback').
       success(function(data, status, headers, config) {
         $scope.allTextbooks = data;
         $scope.departments = _.uniq(_.pluck($scope.allTextbooks, 'deptName'));
@@ -53,7 +53,7 @@ angular.module('dukeTextbookMarketplaceApp')
     };
 
     $scope.watchTextbook = function (textbook) {
-      $http.get("http://colab-sbx-211.oit.duke.edu/DukeTextbookMarketplace/PHPDatabaseCalls/watching/insert.php?netid='" + $scope.currentUser.netid + "'&isbn='" + textbook.isbn + "'");
+      $http.get("//colab-sbx-211.oit.duke.edu/DukeTextbookMarketplace/PHPDatabaseCalls/watching/insert.php?netid='" + $scope.currentUser.netid + "'&isbn='" + textbook.isbn + "'");
     };
 
     $scope.goToAccount = function () {

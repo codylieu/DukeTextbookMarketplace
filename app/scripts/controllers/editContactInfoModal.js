@@ -14,7 +14,7 @@ angular.module('dukeTextbookMarketplaceApp')
 
     $scope.updateContactInfo = function () {
       $modalInstance.close($scope.user);
-      $http.get("http://colab-sbx-211.oit.duke.edu/DukeTextbookMarketplace/PHPDatabaseCalls/Users/update.php?netid='" + $scope.user.netid +
+      $http.get("//colab-sbx-211.oit.duke.edu/DukeTextbookMarketplace/PHPDatabaseCalls/Users/update.php?netid='" + $scope.user.netid +
                 "'&firstName='" + $scope.user.firstName +
                 "'&lastName='" + $scope.user.lastName +
                 "'&major='" + $scope.user.major +

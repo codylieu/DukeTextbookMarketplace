@@ -13,27 +13,27 @@ angular.module('dukeTextbookMarketplaceApp')
     $scope.currentUser = currentUser;
     $scope.books = [];
 
-    $http.get('http://colab-sbx-211.oit.duke.edu/DukeTextbookMarketplace/PHPDatabaseCalls/selectUserTextbooks.php?netid=' + $scope.currentUser.netid).
+    $http.get('//colab-sbx-211.oit.duke.edu/DukeTextbookMarketplace/PHPDatabaseCalls/selectUserTextbooks.php?netid=' + $scope.currentUser.netid).
       success(function(data, status, headers, config) {
         $scope.books = data;
       });
 
     $scope.user = {};
 
-    $http.get('http://colab-sbx-211.oit.duke.edu/DukeTextbookMarketplace/PHPDatabaseCalls/Users/select.php?netid=' + $scope.currentUser.netid).
+    $http.get('//colab-sbx-211.oit.duke.edu/DukeTextbookMarketplace/PHPDatabaseCalls/Users/select.php?netid=' + $scope.currentUser.netid).
       success(function(data, status, headers, config) {
         $scope.user = data[0];
       });
 
     $scope.watching = [];
-    $http.get('http://colab-sbx-211.oit.duke.edu/DukeTextbookMarketplace/PHPDatabaseCalls/selectUserWatchings.php?netid=' + $scope.currentUser.netid).
+    $http.get('//colab-sbx-211.oit.duke.edu/DukeTextbookMarketplace/PHPDatabaseCalls/selectUserWatchings.php?netid=' + $scope.currentUser.netid).
       success(function(data, status, headers, config) {
         $scope.watching = data;
       });
 
     $scope.listings = [];
     $scope.listingsIncrementer;
-    $http.get('http://colab-sbx-211.oit.duke.edu/DukeTextbookMarketplace/PHPDatabaseCalls/selectAllListing.php').
+    $http.get('//colab-sbx-211.oit.duke.edu/DukeTextbookMarketplace/PHPDatabaseCalls/selectAllListing.php').
       success(function(data, status, headers, config) {
         $scope.listings = data;
         $scope.listingsIncrementer = _.last($scope.listings).listing_id;
@@ -69,7 +69,7 @@ angular.module('dukeTextbookMarketplaceApp')
 
       modalInstance.result.then(function (selectedItem) {
         $scope.listingsIncrementer++;
-        $http.get("http://colab-sbx-211.oit.duke.edu/DukeTextbookMarketplace/PHPDatabaseCalls/listings/insert.php?listing_id='" + $scope.listingsIncrementer + 
+        $http.get("//colab-sbx-211.oit.duke.edu/DukeTextbookMarketplace/PHPDatabaseCalls/listings/insert.php?listing_id='" + $scope.listingsIncrementer + 
                   "'&netid='" + $scope.currentUser.netid +
                   "'&isbn='" + selectedItem.isbn +
                   "'&conditionOfBook='" + selectedItem.condition +
@@ -96,7 +96,7 @@ angular.module('dukeTextbookMarketplaceApp')
             return listing.netid == $scope.currentUser.netid && listing.isbn == textbook.isbn
           });
           var listing_id = listing[0].listing_id;
-          $http.get("http://colab-sbx-211.oit.duke.edu/DukeTextbookMarketplace/PHPDatabaseCalls/listings/delete.php?listing_id='" + listing_id +
+          $http.get("//colab-sbx-211.oit.duke.edu/DukeTextbookMarketplace/PHPDatabaseCalls/listings/delete.php?listing_id='" + listing_id +
                       "'&netid='" + $scope.currentUser.netid +
                       "'&isbn='" + textbook.isbn + "'");
         }
@@ -120,7 +120,7 @@ angular.module('dukeTextbookMarketplaceApp')
           return listing.netid == $scope.currentUser.netid && listing.isbn == selectedItem.isbn
         });
         var listing_id = listing[0].listing_id;
-        $http.get("http://colab-sbx-211.oit.duke.edu/DukeTextbookMarketplace/PHPDatabaseCalls/listings/update.php?listing_id='" + listing_id +
+        $http.get("//colab-sbx-211.oit.duke.edu/DukeTextbookMarketplace/PHPDatabaseCalls/listings/update.php?listing_id='" + listing_id +
                   "'&netid='" + $scope.currentUser.netid +
                   "'&isbn='" + selectedItem.isbn +
                   "'&date='" + selectedItem.date +
@@ -132,7 +132,7 @@ angular.module('dukeTextbookMarketplaceApp')
 
     $scope.unwatchTextbook = function (textbook) {
       $scope.watching = _.without($scope.watching, textbook);
-      $http.get("http://colab-sbx-211.oit.duke.edu/DukeTextbookMarketplace/PHPDatabaseCalls/watching/delete.php?netid='" + $scope.currentUser.netid + "'&isbn='" + textbook.isbn + "'");
+      $http.get("//colab-sbx-211.oit.duke.edu/DukeTextbookMarketplace/PHPDatabaseCalls/watching/delete.php?netid='" + $scope.currentUser.netid + "'&isbn='" + textbook.isbn + "'");
     }
 
     $scope.editContactInfo = function () {

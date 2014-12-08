@@ -13,13 +13,13 @@ angular.module('dukeTextbookMarketplaceApp')
     $scope.book = book;
     $scope.relevantListings = [];
     $scope.relevantUsers = [];
-    $http.get('http://colab-sbx-211.oit.duke.edu/DukeTextbookMarketplace/PHPDatabaseCalls/selectAllListing.php').
+    $http.get('//colab-sbx-211.oit.duke.edu/DukeTextbookMarketplace/PHPDatabaseCalls/selectAllListing.php').
       success(function(data, status, headers, config) {
         $scope.relevantListings = _.filter(data, function(listing) {
           return listing.isbn == book.isbn;
         });
         _.each($scope.relevantListings, function (listing) {
-          $http.get('http://colab-sbx-211.oit.duke.edu/DukeTextbookMarketplace/PHPDatabaseCalls/Users/select.php?netid=' + listing.netid).
+          $http.get('//colab-sbx-211.oit.duke.edu/DukeTextbookMarketplace/PHPDatabaseCalls/Users/select.php?netid=' + listing.netid).
             success(function(data, status, headers, config) {
               console.log(data[0]);
               $scope.relevantUsers.push(data[0]);

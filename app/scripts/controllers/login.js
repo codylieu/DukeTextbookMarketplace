@@ -21,7 +21,7 @@ angular.module('dukeTextbookMarketplaceApp')
       major: ''
     }
     $scope.login = function () {
-      $http.get('http://colab-sbx-211.oit.duke.edu/DukeTextbookMarketplace/PHPDatabaseCalls/Users/select.php?netid=' + $scope.netid).
+      $http.get('//colab-sbx-211.oit.duke.edu/DukeTextbookMarketplace/PHPDatabaseCalls/Users/select.php?netid=' + $scope.netid).
         success(function(data, status, headers, config) {
           $scope.user = data;
           if(_.isEmpty($scope.user)) {
@@ -36,7 +36,7 @@ angular.module('dukeTextbookMarketplaceApp')
     };
 
     $scope.register = function () {
-      $http.get("http://colab-sbx-211.oit.duke.edu/DukeTextbookMarketplace/PHPDatabaseCalls/Users/insert.php?netid='" + $scope.newUser.netid +
+      $http.get("//colab-sbx-211.oit.duke.edu/DukeTextbookMarketplace/PHPDatabaseCalls/Users/insert.php?netid='" + $scope.newUser.netid +
                 "'&firstName='" + $scope.newUser.firstName +
                 "'&lastName='" + $scope.newUser.lastName +
                 "'&major='" + $scope.newUser.major +
