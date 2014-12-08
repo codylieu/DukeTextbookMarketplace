@@ -31,6 +31,12 @@ angular.module('dukeTextbookMarketplaceApp')
         $scope.watching = data;
       });
 
+    $scope.listings = [];
+    $http.get('http://colab-sbx-211.oit.duke.edu/DukeTextbookMarketplace/PHPDatabaseCalls/selectAllListing.php').
+      success(function(data, status, headers, config) {
+        $scope.listings = data;
+      });
+
     $scope.tabs = [
       {
         name: 'My Books',
@@ -76,6 +82,13 @@ angular.module('dukeTextbookMarketplaceApp')
       modalInstance.result.then(function (selectedItem) {
         if(selectedItem) {
           $scope.books = _.without($scope.books, textbook);
+          var listing = _.filter($scope.listings, function (listing) {
+            return listing.netid == $scope.currentUser.netid && listing.isbn == textbook.isbn
+          });
+          var listing_id = listing[0].listing_id;
+          $http.get("http://colab-sbx-211.oit.duke.edu/DukeTextbookMarketplace/PHPDatabaseCalls/listings/delete.php?listing_id='" + listing_id +
+                      "'&netid='" + $scope.currentUser.netid +
+                      "'&isbn='" + textbook.isbn + "'");
         }
       });
     }
@@ -106,14 +119,14 @@ angular.module('dukeTextbookMarketplaceApp')
         templateUrl: 'views/editContactInfoModal.html',
         controller: 'EditContactInfoModalInstanceCtrl',
         resolve: {
-          contactInfo: function () {
-            return $scope.contact;
+          user: function () {
+            return $scope.user;
           }
         }
       });
 
       modalInstance.result.then(function (selectedItem) {
-        $scope.contact = selectedItem;
+        $scope.user = selectedItem;
       });
     }
 
