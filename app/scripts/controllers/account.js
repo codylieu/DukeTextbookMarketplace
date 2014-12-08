@@ -68,7 +68,6 @@ angular.module('dukeTextbookMarketplaceApp')
       });
 
       modalInstance.result.then(function (selectedItem) {
-        // $scope.books.push(selectedItem);
         $scope.listingsIncrementer++;
         $http.get("http://colab-sbx-211.oit.duke.edu/DukeTextbookMarketplace/PHPDatabaseCalls/listings/insert.php?listing_id='" + $scope.listingsIncrementer + 
                   "'&netid='" + $scope.currentUser.netid +
@@ -127,7 +126,7 @@ angular.module('dukeTextbookMarketplaceApp')
                   "'&date='" + selectedItem.date +
                   "'&statusOfBook='1" +
                   "'&conditionOfBook='" + selectedItem.conditionOfBook +
-                  "'&price='" + selectedItem.price + "'").success(function(data) {console.log(data);});
+                  "'&price='" + selectedItem.price + "'");
       });
     }
 
