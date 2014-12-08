@@ -13,12 +13,12 @@ angular.module('dukeTextbookMarketplaceApp')
     $scope.currentUser = currentUser;
 
     $scope.allTextbooks = [];
-    $scope.departments3 = [];
+    $scope.departments = [];
     $scope.alphabet = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
     $http.get('http://colab-sbx-211.oit.duke.edu/DukeTextbookMarketplace/PHPDatabaseCalls/selectListingInfo.php?callback=json_callback').
       success(function(data, status, headers, config) {
         $scope.allTextbooks = data;
-        $scope.departments3 = _.uniq(_.pluck($scope.allTextbooks, 'deptName'));
+        $scope.departments = _.uniq(_.pluck($scope.allTextbooks, 'deptName'));
       });
 
     $scope.selectedDepartment = 'African and African American Studies';
