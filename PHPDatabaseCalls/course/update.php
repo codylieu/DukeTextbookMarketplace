@@ -11,7 +11,7 @@ $sql = "UPDATE course
     SET class_id = ".$_GET['class_id'].",
       course_num = ".$_GET['course_num'].",
       course_name = ".$_GET['course_name'].",
-    WHERE dept_id = ".$_GET['dept_id']";
+    WHERE dept_id = ".$_GET['dept_id'];
 
 if ($con->query($sql)){
   echo "Updated record succesfully\n";

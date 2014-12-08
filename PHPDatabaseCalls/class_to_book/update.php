@@ -10,7 +10,7 @@ if(mysqli_connect_errno()){
 
 $sql = "UPDATE class_to_book
     SET class_id = ".$_GET['listing_id'].",
-    WHERE isbn = ".$_GET['isbn'].";
+    WHERE isbn = ".$_GET['isbn'];
 
 if ($con->query($sql)){
   echo "Updated record succesfully\n";

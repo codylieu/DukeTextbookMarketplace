@@ -10,7 +10,7 @@ if(mysqli_connect_errno()){
 
 $sql = "UPDATE department
     SET dept_id = ".$_GET['dept_id'].",
-      deptName = ".$_GET['date'].";
+      deptName = ".$_GET['date'];
 
 if ($con->query($sql)){
   echo "Updated record succesfully\n";
