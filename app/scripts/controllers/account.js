@@ -12,11 +12,25 @@ angular.module('dukeTextbookMarketplaceApp')
 
     $scope.currentUser = currentUser;
     $scope.books = [];
+
     $http.get('http://colab-sbx-211.oit.duke.edu/DukeTextbookMarketplace/PHPDatabaseCalls/selectUserTextbooks.php?netid=' + $scope.currentUser.netid).
       success(function(data, status, headers, config) {
         $scope.books = data;
-        console.log($scope.books);
       });
+
+    $scope.user = {};
+
+    $http.get('http://colab-sbx-211.oit.duke.edu/DukeTextbookMarketplace/PHPDatabaseCalls/Users/select.php?netid=' + $scope.currentUser.netid).
+      success(function(data, status, headers, config) {
+        $scope.user = data[0];
+      });
+
+    $scope.watching = [];
+    $http.get('http://colab-sbx-211.oit.duke.edu/DukeTextbookMarketplace/PHPDatabaseCalls/selectUserWatchings.php?netid=' + $scope.currentUser.netid).
+      success(function(data, status, headers, config) {
+        $scope.watching = data;
+      });
+
     $scope.tabs = [
       {
         name: 'My Books',
@@ -32,41 +46,11 @@ angular.module('dukeTextbookMarketplaceApp')
       }
     ];
 
-    $scope.contact = {
-      name: 'Cody Lieu',
-      phoneNumber: '7573950657',
-      emailAddress: 'cody.a.lieu@gmail.com'
-    };
-
     $scope.switchTabs = function (tab) {
       _.each($scope.tabs, function(elem) {
         elem.active = (tab == elem.name);
       });
     }
-
-    $scope.textbookManager = [
-      {
-        name: 'Introduction to Algorithms',
-        isbn: '9780262033848',
-        course: 'Compsci 330',
-        condition: 'Good'
-      },
-      {
-        name: 'Linear Algebra: A Geometric Approach',
-        isbn: '9781429215213',
-        course: 'Math 221',
-        condition: 'Like New'
-      }
-    ];
-
-    $scope.textbookWatchingManager = [
-      {
-        name: 'Genki I: An Integrated Course in Elementary Japanese',
-        isbn: '9784789014403',
-        course: 'Jpn 101',
-        condition: 'Poor'
-      }
-    ];
 
     $scope.addTextbook = function () {
       var modalInstance = $modal.open({
@@ -75,7 +59,7 @@ angular.module('dukeTextbookMarketplaceApp')
       });
 
       modalInstance.result.then(function (selectedItem) {
-        $scope.textbookManager.push(selectedItem);
+        $scope.books.push(selectedItem);
       });
     }
 
@@ -91,7 +75,7 @@ angular.module('dukeTextbookMarketplaceApp')
 
       modalInstance.result.then(function (selectedItem) {
         if(selectedItem) {
-          $scope.textbookManager = _.without($scope.textbookManager, textbook);
+          $scope.books = _.without($scope.books, textbook);
         }
       });
     }
@@ -113,7 +97,7 @@ angular.module('dukeTextbookMarketplaceApp')
     }
 
     $scope.unwatchTextbook = function (textbook) {
-      $scope.textbookWatchingManager = _.without($scope.textbookWatchingManager, textbook);
+      $scope.watching = _.without($scope.watching, textbook);
     }
 
     $scope.editContactInfo = function () {
@@ -138,5 +122,10 @@ angular.module('dukeTextbookMarketplaceApp')
 
     $scope.goToFindBooks = function () {
       $location.path('textbook');
+    }
+
+    $scope.logout = function () {
+      $scope.currentUser.netid = '';
+      $location.path('login');
     }
   });
