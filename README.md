@@ -31,7 +31,7 @@ Grunt is a JavaScript Task Runner that is included in Yeoman to assist with auto
 
 ##Limitations
 
-While users can sign in and register based off of their netid, there is no integration with Duke’s OAuth service, that allows us to user their API to sync up with a user’s password.
+While users can sign in and register based off of their netid, there is no integration with Duke’s OAuth service, that allows us to user their API to sync up with a user’s password. If we try to register an existing user, it will function as log-in as opposed to netid account validation.
 
 The API that we use to access the textbook data is very messy and unorganized, which can be a minor annoyance to read for users, but is otherwise negligible.
 
